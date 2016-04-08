@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="UniWebView">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/UniWebView.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
