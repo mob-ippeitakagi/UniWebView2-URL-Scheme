@@ -16,7 +16,7 @@ public class UniWebViewCustomViewActivity extends Activity
 	public void onCreate(Bundle savedInstanceState) {
     	super.onCreate(savedInstanceState);
     	UniWebViewCustomViewActivity.customViewActivity = this;
-    	currentFullScreenClient.ToggleFullScreen(this);
+    	// currentFullScreenClient.ToggleFullScreen(this);
 	}
 
 	@Override
