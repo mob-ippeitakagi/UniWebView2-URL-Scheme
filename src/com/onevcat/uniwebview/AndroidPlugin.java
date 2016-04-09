@@ -17,6 +17,9 @@ import android.webkit.CookieManager;
 import android.webkit.CookieSyncManager;
 import android.webkit.ValueCallback;
 
+import android.content.Context;
+import android.content.SharedPreferences;
+
 import com.unity3d.player.UnityPlayer;
 import com.unity3d.player.UnityPlayerActivity;
 
@@ -81,6 +84,18 @@ public class AndroidPlugin extends UnityPlayerActivity
         if (manager != null) {
             manager.startSync();
         }
+
+        Context context = getApplicationContext();
+        // SharedPreferences取得。UnityのPlayerPrefsでは、
+        // バンドル名のSharedPreferencesを使用しているので合わせる
+        SharedPreferences packagePrefs = context.getSharedPreferences(context.getPackageName(), Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = packagePrefs.edit();
+        // 指定のスキーム経由で起動されたフラグをSharedPreferencesに保存
+        Uri data = getIntent().getData();
+        if (data != null) {
+          editor.putString("UrlSchemeQuery", data.getQuery());
+          editor.commit();
+        }
     }
 
     @Override
@@ -130,6 +145,12 @@ public class AndroidPlugin extends UnityPlayerActivity
 
         _cameraPhotoPath = null;
 
+    }
+
+    @Override
+    public void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        setIntent(intent);
     }
 
     public static void _UniWebViewInit(final String name, final int top, final int left, final int bottom, final int right) {

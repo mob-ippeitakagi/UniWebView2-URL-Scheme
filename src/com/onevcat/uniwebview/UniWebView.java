@@ -33,9 +33,7 @@ public class UniWebView extends VideoEnabledWebView {
             webSettings.setUserAgentString(UniWebView.customUserAgent);
         }
 
-        if (Build.VERSION.SDK_INT >= 8) {
-            webSettings.setPluginState(WebSettings.PluginState.ON);
-        }
+        webSettings.setPluginState(WebSettings.PluginState.ON);
 
         if (Build.VERSION.SDK_INT >= 11) {
             webSettings.setDisplayZoomControls(false);
