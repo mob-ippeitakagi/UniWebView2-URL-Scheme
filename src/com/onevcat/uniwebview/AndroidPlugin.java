@@ -89,12 +89,16 @@ public class AndroidPlugin extends UnityPlayerActivity
         // SharedPreferences取得。UnityのPlayerPrefsでは、
         // バンドル名のSharedPreferencesを使用しているので合わせる
         SharedPreferences packagePrefs = context.getSharedPreferences(context.getPackageName(), Context.MODE_PRIVATE);
+        SharedPreferences packagePrefsV2 = context.getSharedPreferences(context.getPackageName() + ".v2.playerprefs", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = packagePrefs.edit();
+        SharedPreferences.Editor editorV2 = packagePrefsV2.edit();
         // 指定のスキーム経由で起動されたフラグをSharedPreferencesに保存
         Uri data = getIntent().getData();
         if (data != null) {
           editor.putString("UrlSchemeQuery", data.getQuery());
+          editorV2.putString("UrlSchemeQuery", data.getQuery());
           editor.commit();
+          editorV2.commit();
         }
     }
 
